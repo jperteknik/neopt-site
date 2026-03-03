@@ -125,7 +125,7 @@
   }
 
   /* ═══════════════════════════════
-     HERO — Full viewport
+     HERO
   ═══════════════════════════════ */
   .hero {
     min-height: 100vh;
@@ -254,7 +254,7 @@
   }
 
   /* ═══════════════════════════════
-     STATS — Apple "2x" style
+     STATS
   ═══════════════════════════════ */
   .stats-section {
     padding: 100px 32px;
@@ -359,7 +359,7 @@
   }
 
   /* ═══════════════════════════════
-     HOW IT WORKS — 3 steps
+     HOW IT WORKS
   ═══════════════════════════════ */
   .how-section {
     padding: 120px 32px;
@@ -422,7 +422,7 @@
   }
 
   /* ═══════════════════════════════
-     WHAT WE CATCH — Checklist
+     WHAT WE CATCH
   ═══════════════════════════════ */
   .catch-section {
     padding: 120px 32px;
@@ -475,7 +475,7 @@
   }
 
   /* ═══════════════════════════════
-     POSITIONING — "Built for billing companies"
+     POSITIONING
   ═══════════════════════════════ */
   .positioning-section {
     padding: 120px 32px;
@@ -504,7 +504,7 @@
   }
 
   /* ═══════════════════════════════
-     CTA — Free audit
+     CTA
   ═══════════════════════════════ */
   .cta-section {
     min-height: 80vh;
@@ -530,13 +530,8 @@
     pointer-events: none;
   }
 
-  .cta-section .section-headline {
-    margin-bottom: 20px;
-  }
-
-  .cta-section .section-body {
-    margin-bottom: 40px;
-  }
+  .cta-section .section-headline { margin-bottom: 20px; }
+  .cta-section .section-body { margin-bottom: 40px; }
 
   .cta-box {
     max-width: 520px;
@@ -550,9 +545,7 @@
     color: var(--body-text);
   }
 
-  .cta-box strong {
-    color: var(--teal);
-  }
+  .cta-box strong { color: var(--teal); }
 
   .cta-box .email-highlight {
     font-family: 'IBM Plex Mono', monospace;
@@ -615,6 +608,568 @@
   }
 
   /* ═══════════════════════════════
+     DEMO SECTION
+  ═══════════════════════════════ */
+  .demo-section {
+    padding: 120px 32px;
+    background: var(--near-black);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .demo-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+  }
+
+  /* Subtle grid background */
+  .demo-section::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(48,213,200,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(48,213,200,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+  }
+
+  .demo-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .demo-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+
+  /* Generate button */
+  .demo-generate-wrap {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .btn-generate {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: transparent;
+    color: var(--teal);
+    padding: 14px 32px;
+    border-radius: 28px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Geist', sans-serif;
+    border: 1.5px solid rgba(48,213,200,0.4);
+    cursor: pointer;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-generate::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--teal-dim);
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .btn-generate:hover::before { opacity: 1; }
+
+  .btn-generate:hover {
+    border-color: var(--teal);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(48,213,200,0.15);
+  }
+
+  .btn-generate:active { transform: translateY(0); }
+
+  .btn-generate .icon {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.4s var(--ease);
+  }
+
+  .btn-generate.spinning .icon {
+    animation: spin 0.7s linear infinite;
+  }
+
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+
+  /* Claims grid */
+  .demo-claims-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 36px;
+    min-height: 0;
+  }
+
+  /* Claim card */
+  .claim-card {
+    background: var(--slate);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s var(--ease), transform 0.5s var(--ease), border-color 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .claim-card.loaded {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .claim-card.audited-clean {
+    border-color: rgba(48,213,200,0.25);
+  }
+
+  .claim-card.audited-error {
+    border-color: rgba(255,69,58,0.3);
+  }
+
+  .claim-card.audited-warning {
+    border-color: rgba(255,159,10,0.3);
+  }
+
+  /* Top glow on audited cards */
+  .claim-card.audited-clean::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--teal), transparent);
+  }
+
+  .claim-card.audited-error::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--coral), transparent);
+  }
+
+  .claim-card.audited-warning::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--amber), transparent);
+  }
+
+  .claim-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 14px;
+  }
+
+  .claim-patient {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.3;
+  }
+
+  .claim-id {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--gray-400);
+    margin-top: 2px;
+  }
+
+  .claim-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gray-600);
+    margin-top: 3px;
+    flex-shrink: 0;
+    transition: background 0.4s, box-shadow 0.4s;
+  }
+
+  .claim-status-dot.clean {
+    background: var(--teal);
+    box-shadow: 0 0 8px rgba(48,213,200,0.5);
+  }
+
+  .claim-status-dot.error {
+    background: var(--coral);
+    box-shadow: 0 0 8px rgba(255,69,58,0.5);
+  }
+
+  .claim-status-dot.warning {
+    background: var(--amber);
+    box-shadow: 0 0 8px rgba(255,159,10,0.5);
+  }
+
+  .claim-codes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+
+  .code-chip {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--gray-200);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 3px 8px;
+    transition: all 0.3s;
+  }
+
+  .code-chip.flagged {
+    color: var(--coral);
+    background: var(--coral-dim);
+    border-color: rgba(255,69,58,0.2);
+  }
+
+  .claim-meta {
+    font-size: 12px;
+    color: var(--gray-400);
+    line-height: 1.5;
+  }
+
+  .claim-meta span {
+    color: var(--gray-300);
+  }
+
+  /* Violation badge — hidden until audited */
+  .violation-badge {
+    margin-top: 12px;
+    padding: 8px 10px;
+    border-radius: var(--r);
+    font-size: 11px;
+    line-height: 1.5;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
+  }
+
+  .violation-badge.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .violation-badge.error-badge {
+    background: var(--coral-dim);
+    border: 1px solid rgba(255,69,58,0.18);
+    color: #ff7069;
+  }
+
+  .violation-badge.warning-badge {
+    background: var(--amber-dim);
+    border: 1px solid rgba(255,159,10,0.18);
+    color: #ffb830;
+  }
+
+  .violation-badge.clean-badge {
+    background: var(--teal-dim);
+    border: 1px solid rgba(48,213,200,0.18);
+    color: var(--teal);
+  }
+
+  .violation-badge .badge-type {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+    opacity: 0.7;
+  }
+
+  .risk-amount {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+
+  /* ── Audit progress bar ── */
+  .demo-audit-bar {
+    display: none;
+    background: var(--slate);
+    border: 1px solid var(--border);
+    border-radius: var(--r-lg);
+    padding: 24px 28px;
+    margin-bottom: 32px;
+  }
+
+  .demo-audit-bar.active { display: block; }
+
+  .audit-bar-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .audit-spinner {
+    width: 12px;
+    height: 12px;
+    border: 2px solid rgba(48,213,200,0.2);
+    border-top-color: var(--teal);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    flex-shrink: 0;
+  }
+
+  .audit-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .audit-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--gray-500);
+    transition: color 0.3s;
+  }
+
+  .audit-step.active { color: var(--body-text-bright); }
+
+  .audit-step.done { color: var(--teal); }
+
+  .audit-step-icon {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1.5px solid var(--gray-600);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    flex-shrink: 0;
+    transition: all 0.3s;
+  }
+
+  .audit-step.active .audit-step-icon {
+    border-color: var(--teal);
+    background: var(--teal-dim);
+  }
+
+  .audit-step.done .audit-step-icon {
+    border-color: var(--teal);
+    background: var(--teal);
+    color: var(--black);
+    font-weight: 700;
+  }
+
+  .audit-progress-track {
+    height: 2px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 2px;
+    margin-top: 16px;
+    overflow: hidden;
+  }
+
+  .audit-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--teal), var(--blue));
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.5s var(--ease);
+  }
+
+  /* ── Results summary panel ── */
+  .demo-results {
+    display: none;
+    margin-bottom: 36px;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+  }
+
+  .demo-results.visible {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .results-summary-bar {
+    background: var(--charcoal);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--r-lg);
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .result-stat {
+    text-align: center;
+  }
+
+  .result-stat-num {
+    font-family: 'Geist', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .result-stat-num.red {
+    background: linear-gradient(135deg, var(--coral), #ff6b61);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .result-stat-num.teal {
+    background: linear-gradient(135deg, var(--teal), var(--mint));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .result-stat-num.amber {
+    background: linear-gradient(135deg, var(--amber), #ffbc4b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .result-stat-label {
+    font-size: 12px;
+    color: var(--gray-400);
+    font-weight: 500;
+  }
+
+  .results-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--border);
+  }
+
+  /* Revenue at risk counter animation */
+  .risk-counter {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--coral);
+    letter-spacing: -0.02em;
+  }
+
+  /* CTA actions after results */
+  .demo-cta-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--white);
+    padding: 13px 28px;
+    border-radius: 28px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Geist', sans-serif;
+    border: 1.5px solid rgba(255,255,255,0.2);
+    cursor: pointer;
+    transition: all 0.25s;
+    text-decoration: none;
+  }
+
+  .btn-download:hover {
+    border-color: rgba(255,255,255,0.45);
+    background: rgba(255,255,255,0.04);
+    transform: translateY(-1px);
+  }
+
+  .btn-book-demo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--teal);
+    color: var(--black);
+    padding: 13px 28px;
+    border-radius: 28px;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'Geist', sans-serif;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-decoration: none;
+  }
+
+  .btn-book-demo:hover {
+    background: #5ce0d5;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 24px rgba(48,213,200,0.25);
+  }
+
+  /* Regenerate hint */
+  .demo-hint {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 12px;
+    color: var(--gray-500);
+  }
+
+  .demo-hint button {
+    background: none;
+    border: none;
+    color: var(--teal);
+    font-size: 12px;
+    font-family: 'Geist', sans-serif;
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    text-underline-offset: 3px;
+  }
+
+  .demo-hint button:hover { color: #5ce0d5; }
+
+  /* ── Scenario label ── */
+  .demo-scenario-label {
+    display: none;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: var(--gray-300);
+    font-style: italic;
+  }
+
+  .demo-scenario-label.visible { display: block; }
+
+  /* ═══════════════════════════════
      PRINT STYLES
   ═══════════════════════════════ */
   @media print {
@@ -636,6 +1191,9 @@
     .steps-grid { grid-template-columns: 1fr; }
     .catch-grid { grid-template-columns: 1fr; }
     .cta-box { padding: 20px 24px; }
+    .demo-claims-grid { grid-template-columns: 1fr; }
+    .results-summary-bar { justify-content: center; }
+    .results-divider { display: none; }
   }
 </style>
 </head>
@@ -650,6 +1208,7 @@
   <ul class="nav-links">
     <li><a href="#problem">Why</a></li>
     <li><a href="#how">How</a></li>
+    <li><a href="#demo">Demo</a></li>
     <li><a href="#catch">Coverage</a></li>
     <li><a href="#cta" class="pill-cta">Free Audit</a></li>
   </ul>
@@ -664,7 +1223,7 @@
   </h1>
   <p class="hero-desc">Catch coding errors, NCCI conflicts, and modifier gaps before submission with CMS regulatory citations for every flag. Plug into your existing workflow. No EMR replacement required.</p>
   <div class="hero-actions">
-    <a href="#cta" class="btn-teal">Free Compliance Audit →</a>
+    <a href="#demo" class="btn-teal">See It In Action →</a>
     <a href="#how" class="btn-outline">How It Works</a>
   </div>
 </section>
@@ -721,6 +1280,118 @@
   </div>
 </section>
 
+<!-- ═══════════════════════════════════════
+     INTERACTIVE DEMO SECTION
+════════════════════════════════════════ -->
+<section class="demo-section" id="demo">
+  <div class="demo-inner">
+
+    <!-- Header -->
+    <div class="demo-header reveal">
+      <div class="section-overline teal">Live Demo</div>
+      <h2 class="section-headline">See the engine run.</h2>
+      <p class="section-body" style="margin-bottom:0;">Generate a sample claim set from a real MAC Jurisdiction J practice scenario. Watch neoPT audit them in real time.</p>
+    </div>
+
+    <!-- Generate button -->
+    <div class="demo-generate-wrap reveal">
+      <button class="btn-generate" id="btnGenerate" onclick="runDemo()">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="23 4 23 10 17 10"></polyline>
+          <polyline points="1 20 1 14 7 14"></polyline>
+          <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"></path>
+        </svg>
+        Generate Sample Claims
+      </button>
+    </div>
+
+    <!-- Scenario label -->
+    <div class="demo-scenario-label" id="demoScenarioLabel"></div>
+
+    <!-- Claims grid -->
+    <div class="demo-claims-grid" id="demoClaimsGrid"></div>
+
+    <!-- Audit progress bar -->
+    <div class="demo-audit-bar" id="demoAuditBar">
+      <div class="audit-bar-label">
+        <span class="audit-spinner"></span>
+        Running compliance engine…
+      </div>
+      <div class="audit-steps" id="auditSteps">
+        <div class="audit-step" data-step="0">
+          <div class="audit-step-icon">·</div>
+          Checking NCCI PTP edit pairs
+        </div>
+        <div class="audit-step" data-step="1">
+          <div class="audit-step-icon">·</div>
+          Validating 8-minute rule unit counts
+        </div>
+        <div class="audit-step" data-step="2">
+          <div class="audit-step-icon">·</div>
+          Scanning for missing GP / CQ modifiers
+        </div>
+        <div class="audit-step" data-step="3">
+          <div class="audit-step-icon">·</div>
+          Comparing against CMS MUE limits
+        </div>
+        <div class="audit-step" data-step="4">
+          <div class="audit-step-icon">·</div>
+          Calculating revenue at risk (KY fee schedule)
+        </div>
+      </div>
+      <div class="audit-progress-track">
+        <div class="audit-progress-fill" id="auditProgressFill"></div>
+      </div>
+    </div>
+
+    <!-- Results summary -->
+    <div class="demo-results" id="demoResults">
+      <div class="results-summary-bar">
+        <div class="result-stat">
+          <div class="result-stat-num" id="resTotal" style="color:var(--white)">—</div>
+          <div class="result-stat-label">Claims audited</div>
+        </div>
+        <div class="results-divider"></div>
+        <div class="result-stat">
+          <div class="result-stat-num red" id="resErrors">—</div>
+          <div class="result-stat-label">Errors found</div>
+        </div>
+        <div class="results-divider"></div>
+        <div class="result-stat">
+          <div class="result-stat-num amber" id="resWarnings">—</div>
+          <div class="result-stat-label">Warnings</div>
+        </div>
+        <div class="results-divider"></div>
+        <div class="result-stat">
+          <div class="risk-counter" id="resRisk">$0</div>
+          <div class="result-stat-label">Revenue at risk</div>
+        </div>
+      </div>
+
+      <!-- CTA buttons -->
+      <div class="demo-cta-row">
+        <button class="btn-download" id="btnDownload" onclick="downloadReport()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+          Download Audit Report
+        </button>
+        <a href="#cta" class="btn-book-demo">
+          Run on Your Real Claims →
+        </a>
+      </div>
+
+      <div class="demo-hint">
+        Different scenario?
+        <button onclick="resetDemo()">Generate new claims</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- ═══ WHAT WE CATCH ═══ -->
 <section class="catch-section" id="catch">
   <h2 class="section-headline reveal">What we catch.</h2>
@@ -764,19 +1435,786 @@
   <div class="footer-links"></div>
 </footer>
 
-<!-- ═══ SCROLL REVEAL ═══ -->
+<!-- ═══ SCRIPTS ═══ -->
 <script>
+  /* ─── Scroll reveal ─── */
   document.documentElement.classList.add('js-ready');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObserver.unobserve(e.target);
       }
     });
   }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* ─── Inline claim library (9 sets × 3 claims) ─── */
+  const CLAIM_SETS = [
+    {
+      set_id: "SET-01",
+      scenario: "NCCI PTP Conflict — Mutually Exclusive Timed Codes",
+      claims: [
+        {
+          claim_id: "CLM-0101", patient_name: "Harold Bowman", dob: "1946", dos: "2025-01-14",
+          provider_name: "Bluegrass Rehab & PT",
+          codes: ["97110", "97530", "97014"],
+          modifiers: ["GP", "GP", ""],
+          units: [2, 2, 1],
+          minutes: [30, 30, null],
+          total_billed: 142.76, revenue_at_risk: 63.40,
+          issues: [{
+            type: "NCCI_PTP", severity: "error",
+            codes: ["97110", "97530"],
+            description: "97110 and 97530 are NCCI PTP edit pair. Cannot bill both same day without modifier 59 and distinct documentation.",
+            revenue_at_risk: 63.40
+          }]
+        },
+        {
+          claim_id: "CLM-0102", patient_name: "Dorothy Kimball", dob: "1952", dos: "2025-01-14",
+          provider_name: "Bluegrass Rehab & PT",
+          codes: ["97140", "97012", "97530"],
+          modifiers: ["GP", "", "GP"],
+          units: [3, 1, 1],
+          minutes: [45, null, 15],
+          total_billed: 147.35, revenue_at_risk: 19.44,
+          issues: [{
+            type: "NCCI_PTP", severity: "error",
+            codes: ["97012", "97530"],
+            description: "97012 (Mechanical Traction) bundles into 97530. Modifier 59 required with separate documentation.",
+            revenue_at_risk: 19.44
+          }]
+        },
+        {
+          claim_id: "CLM-0103", patient_name: "Robert Sizemore", dob: "1958", dos: "2025-01-14",
+          provider_name: "Bluegrass Rehab & PT",
+          codes: ["97110", "97140", "97035"],
+          modifiers: ["GP", "GP", "GP"],
+          units: [3, 1, 1],
+          minutes: [45, 15, 10],
+          total_billed: 145.16, revenue_at_risk: 0,
+          issues: []
+        }
+      ],
+      total_risk: 82.84
+    },
+    {
+      set_id: "SET-02",
+      scenario: "8-Minute Rule Violations — Unit Overbilling",
+      claims: [
+        {
+          claim_id: "CLM-0201", patient_name: "Linda Tackett", dob: "1950", dos: "2025-01-21",
+          provider_name: "Ohio Valley Therapy Assoc.",
+          codes: ["97110", "97530", "97010"],
+          modifiers: ["GP", "GP", ""],
+          units: [2, 3, 1],
+          minutes: [38, 30, null],
+          total_billed: 195.75, revenue_at_risk: 31.70,
+          issues: [{
+            type: "8_MINUTE_RULE", severity: "error",
+            codes: ["97530"],
+            description: "97530 billed at 3 units (needs 38+ min) but only 30 min documented. Max 2 units supported. One unit will deny.",
+            revenue_at_risk: 31.70
+          }]
+        },
+        {
+          claim_id: "CLM-0202", patient_name: "Gerald Prater", dob: "1944", dos: "2025-01-21",
+          provider_name: "Ohio Valley Therapy Assoc.",
+          codes: ["97140", "97110", "97012"],
+          modifiers: ["GP", "GP", ""],
+          units: [4, 2, 1],
+          minutes: [50, 20, null],
+          total_billed: 209.86, revenue_at_risk: 32.07,
+          issues: [{
+            type: "8_MINUTE_RULE", severity: "error",
+            codes: ["97140"],
+            description: "Combined timed minutes (70) insufficient to support 4+2 units (need 82 min minimum). 97140 overbilled by 1 unit.",
+            revenue_at_risk: 32.07
+          }]
+        },
+        {
+          claim_id: "CLM-0203", patient_name: "Carol Hensley", dob: "1955", dos: "2025-01-21",
+          provider_name: "Ohio Valley Therapy Assoc.",
+          codes: ["97110", "97116", "97014"],
+          modifiers: ["GP", "GP", ""],
+          units: [2, 2, 1],
+          minutes: [25, 25, null],
+          total_billed: 144.24, revenue_at_risk: 0,
+          issues: []
+        }
+      ],
+      total_risk: 63.77
+    },
+    {
+      set_id: "SET-03",
+      scenario: "Missing GP Modifier — Outpatient PT Requirement",
+      claims: [
+        {
+          claim_id: "CLM-0301", patient_name: "Patsy Combs", dob: "1948", dos: "2025-02-04",
+          provider_name: "Volunteer State PT",
+          codes: ["97110", "97530", "97035"],
+          modifiers: ["", "", ""],
+          units: [2, 2, 1],
+          minutes: [30, 30, 8],
+          total_billed: 145.42, revenue_at_risk: 145.42,
+          issues: [{
+            type: "MODIFIER_GAP", severity: "error",
+            codes: ["97110", "97530", "97035"],
+            description: "All therapy codes missing required GP modifier. Medicare will deny all line items in outpatient setting without GP.",
+            revenue_at_risk: 145.42
+          }]
+        },
+        {
+          claim_id: "CLM-0302", patient_name: "Billy Hatfield", dob: "1961", dos: "2025-02-04",
+          provider_name: "Volunteer State PT",
+          codes: ["97164", "97110", "97140"],
+          modifiers: ["", "GP", "GP"],
+          units: [1, 2, 1],
+          minutes: [null, 30, 15],
+          total_billed: 163.12, revenue_at_risk: 68.91,
+          issues: [{
+            type: "MODIFIER_GAP", severity: "warning",
+            codes: ["97164"],
+            description: "97164 (PT Re-evaluation) missing GP modifier. Inconsistent modifier use on this claim may trigger additional review.",
+            revenue_at_risk: 68.91
+          }]
+        },
+        {
+          claim_id: "CLM-0303", patient_name: "Wanda Justice", dob: "1956", dos: "2025-02-04",
+          provider_name: "Volunteer State PT",
+          codes: ["97140", "97110", "97010"],
+          modifiers: ["GP", "GP", ""],
+          units: [2, 2, 1],
+          minutes: [30, 30, null],
+          total_billed: 133.72, revenue_at_risk: 0,
+          issues: []
+        }
+      ],
+      total_risk: 214.33
+    },
+    {
+      set_id: "SET-04",
+      scenario: "MUE Violation — Medically Unlikely Edits Exceeded",
+      claims: [
+        {
+          claim_id: "CLM-0401", patient_name: "Clarence Blevins", dob: "1942", dos: "2025-01-28",
+          provider_name: "Mountain State Rehabilitation",
+          codes: ["97110", "97140", "97010"],
+          modifiers: ["GP", "GP", ""],
+          units: [6, 2, 1],
+          minutes: [90, 30, null],
+          total_billed: 258.00, revenue_at_risk: 62.14,
+          issues: [{
+            type: "MUE_VIOLATION", severity: "error",
+            codes: ["97110"],
+            description: "97110 billed at 6 units. CMS MUE limit is 4 units/DOS. Units 5–6 auto-deny regardless of documented minutes.",
+            revenue_at_risk: 62.14
+          }]
+        },
+        {
+          claim_id: "CLM-0402", patient_name: "Shirley Compton", dob: "1953", dos: "2025-01-28",
+          provider_name: "Mountain State Rehabilitation",
+          codes: ["97530", "97035", "97014"],
+          modifiers: ["GP", "GP", ""],
+          units: [5, 2, 1],
+          minutes: [75, 16, null],
+          total_billed: 215.48, revenue_at_risk: 31.70,
+          issues: [{
+            type: "MUE_VIOLATION", severity: "error",
+            codes: ["97530"],
+            description: "97530 billed at 5 units. MUE limit is 4/DOS. 5th unit auto-denies — MUE overrides 8-minute rule documentation.",
+            revenue_at_risk: 31.70
+          }]
+        },
+        {
+          claim_id: "CLM-0403", patient_name: "James Thornton", dob: "1960", dos: "2025-01-28",
+          provider_name: "Mountain State Rehabilitation",
+          codes: ["97110", "97140", "97012"],
+          modifiers: ["GP", "GP", ""],
+          units: [2, 2, 1],
+          minutes: [25, 25, null],
+          total_billed: 145.72, revenue_at_risk: 0,
+          issues: []
+        }
+      ],
+      total_risk: 93.84
+    },
+    {
+      set_id: "SET-05",
+      scenario: "Mixed Violations — Real-World Batch Complexity",
+      claims: [
+        {
+          claim_id: "CLM-0501", patient_name: "Norma Slone", dob: "1949", dos: "2025-02-11",
+          provider_name: "Indiana PT & Rehab",
+          codes: ["97110", "97035", "G0283", "97014"],
+          modifiers: ["GP", "GP", "", ""],
+          units: [2, 1, 1, 1],
+          minutes: [30, 8, null, null],
+          total_billed: 116.46, revenue_at_risk: 17.22,
+          issues: [{
+            type: "NCCI_PTP", severity: "error",
+            codes: ["97014", "G0283"],
+            description: "97014 (CPT) and G0283 (HCPCS) describe the same electrical stimulation service. Duplicate — 97014 will deny. Use G0283 only for Medicare.",
+            revenue_at_risk: 17.22
+          }]
+        },
+        {
+          claim_id: "CLM-0502", patient_name: "Floyd Cornett", dob: "1945", dos: "2025-02-11",
+          provider_name: "Indiana PT & Rehab",
+          codes: ["97140", "97530", "97010"],
+          modifiers: ["GP", "GP", ""],
+          units: [3, 2, 1],
+          minutes: [35, 20, null],
+          total_billed: 167.05, revenue_at_risk: 32.07,
+          issues: [{
+            type: "8_MINUTE_RULE", severity: "error",
+            codes: ["97140"],
+            description: "97140 at 3 units requires 38–52 min. Only 35 min documented — supports max 2 units. Overbilled by 1 unit.",
+            revenue_at_risk: 32.07
+          }]
+        },
+        {
+          claim_id: "CLM-0503", patient_name: "Ruby Fletcher", dob: "1957", dos: "2025-02-11",
+          provider_name: "Indiana PT & Rehab",
+          codes: ["97110", "97116", "97140"],
+          modifiers: ["GP", "GP", "GP"],
+          units: [2, 1, 2],
+          minutes: [30, 15, 30],
+          total_billed: 158.72, revenue_at_risk: 0,
+          issues: []
+        }
+      ],
+      total_risk: 49.29
+    },
+    {
+      set_id: "SET-06",
+      scenario: "High-Stakes Batch — All 3 Claims Have Issues",
+      claims: [
+        {
+          claim_id: "CLM-0601", patient_name: "Earl Mullins", dob: "1940", dos: "2025-02-18",
+          provider_name: "Appalachian Rehab Center",
+          codes: ["97110", "97530", "97014"],
+          modifiers: ["GP", "GP", ""],
+          units: [3, 3, 1],
+          minutes: [40, 40, null],
+          total_billed: 205.53, revenue_at_risk: 95.10,
+          issues: [
+            {
+              type: "NCCI_PTP", severity: "error",
+              codes: ["97110", "97530"],
+              description: "97110 and 97530 are NCCI PTP edit pair. Cannot bill both same day without modifier 59.",
+              revenue_at_risk: 95.10
+            },
+            {
+              type: "8_MINUTE_RULE", severity: "warning",
+              codes: ["97110"],
+              description: "80 total timed minutes supports 6 units, but 83 min needed minimum — marginal, recommend documentation review.",
+              revenue_at_risk: 0
+            }
+          ]
+        },
+        {
+          claim_id: "CLM-0602", patient_name: "Mildred Salyer", dob: "1947", dos: "2025-02-18",
+          provider_name: "Appalachian Rehab Center",
+          codes: ["97140", "97110", "97012"],
+          modifiers: ["", "", ""],
+          units: [2, 2, 1],
+          minutes: [30, 30, null],
+          total_billed: 145.72, revenue_at_risk: 126.28,
+          issues: [{
+            type: "MODIFIER_GAP", severity: "error",
+            codes: ["97140", "97110"],
+            description: "97140 and 97110 missing required GP modifier. Both line items will deny in outpatient setting.",
+            revenue_at_risk: 126.28
+          }]
+        },
+        {
+          claim_id: "CLM-0603", patient_name: "Chester Napier", dob: "1952", dos: "2025-02-18",
+          provider_name: "Appalachian Rehab Center",
+          codes: ["97530", "97035", "97010"],
+          modifiers: ["GP", "GP", ""],
+          units: [5, 1, 1],
+          minutes: [75, 8, null],
+          total_billed: 185.82, revenue_at_risk: 31.70,
+          issues: [{
+            type: "MUE_VIOLATION", severity: "error",
+            codes: ["97530"],
+            description: "97530 at 5 units exceeds CMS MUE of 4/DOS. 5th unit auto-denies.",
+            revenue_at_risk: 31.70
+          }]
+        }
+      ],
+      total_risk: 253.08
+    },
+    {
+      set_id: "SET-07",
+      scenario: "Eval Day Billing — Common New Patient Errors",
+      claims: [
+        {
+          claim_id: "CLM-0701", patient_name: "Thelma Caudill", dob: "1955", dos: "2025-01-07",
+          provider_name: "Tri-State PT Group",
+          codes: ["97162", "97110", "97140"],
+          modifiers: ["GP", "GP", "GP"],
+          units: [1, 2, 1],
+          minutes: [null, 30, 15],
+          total_billed: 232.35, revenue_at_risk: 0,
+          issues: []
+        },
+        {
+          claim_id: "CLM-0702", patient_name: "Alvin Ramey", dob: "1943", dos: "2025-01-07",
+          provider_name: "Tri-State PT Group",
+          codes: ["97163", "97530", "97014"],
+          modifiers: ["", "GP", ""],
+          units: [1, 2, 1],
+          minutes: [null, 30, null],
+          total_billed: 249.06, revenue_at_risk: 168.44,
+          issues: [{
+            type: "MODIFIER_GAP", severity: "error",
+            codes: ["97163"],
+            description: "97163 (PT Eval, High Complexity) missing GP modifier. Common oversight on eval days using different charge entry workflow.",
+            revenue_at_risk: 168.44
+          }]
+        },
+        {
+          claim_id: "CLM-0703", patient_name: "Geneva Ratliff", dob: "1951", dos: "2025-01-07",
+          provider_name: "Tri-State PT Group",
+          codes: ["97161", "97110", "97010"],
+          modifiers: ["GP", "GP", ""],
+          units: [1, 3, 1],
+          minutes: [null, 35, null],
+          total_billed: 209.02, revenue_at_risk: 31.07,
+          issues: [{
+            type: "8_MINUTE_RULE", severity: "error",
+            codes: ["97110"],
+            description: "97110 at 3 units needs 38–52 min. Only 35 min documented on initial eval day — max 2 units supported.",
+            revenue_at_risk: 31.07
+          }]
+        }
+      ],
+      total_risk: 199.51
+    },
+    {
+      set_id: "SET-08",
+      scenario: "Post-Surgical Rehab — Complex Diagnosis Billing",
+      claims: [
+        {
+          claim_id: "CLM-0801", patient_name: "Harlan Adkins", dob: "1958", dos: "2025-02-25",
+          provider_name: "Buckeye PT Partners",
+          codes: ["97530", "97116", "97140"],
+          modifiers: ["GP", "GP", "GP"],
+          units: [3, 2, 1],
+          minutes: [45, 30, 15],
+          total_billed: 192.05, revenue_at_risk: 0,
+          issues: []
+        },
+        {
+          claim_id: "CLM-0802", patient_name: "Loretta Dingess", dob: "1950", dos: "2025-02-25",
+          provider_name: "Buckeye PT Partners",
+          codes: ["97110", "97012", "97530"],
+          modifiers: ["GP", "", "GP"],
+          units: [4, 1, 2],
+          minutes: [60, null, 30],
+          total_billed: 207.12, revenue_at_risk: 19.44,
+          issues: [{
+            type: "NCCI_PTP", severity: "error",
+            codes: ["97012", "97530"],
+            description: "97012 (Mechanical Traction) bundles into 97530. Modifier 59 required with separate documentation.",
+            revenue_at_risk: 19.44
+          }]
+        },
+        {
+          claim_id: "CLM-0803", patient_name: "Calvin Stacy", dob: "1947", dos: "2025-02-25",
+          provider_name: "Buckeye PT Partners",
+          codes: ["97530", "97116", "97010"],
+          modifiers: ["GP", "GP", ""],
+          units: [5, 2, 1],
+          minutes: [75, 25, null],
+          total_billed: 230.82, revenue_at_risk: 31.70,
+          issues: [{
+            type: "MUE_VIOLATION", severity: "error",
+            codes: ["97530"],
+            description: "97530 at 5 units exceeds MUE of 4/DOS. 5th unit auto-denies. Documentation sufficient under 8-min rule but MUE takes precedence.",
+            revenue_at_risk: 31.70
+          }]
+        }
+      ],
+      total_risk: 51.14
+    },
+    {
+      set_id: "SET-09",
+      scenario: "Chronic Pain — Recurring Billing Pattern Issues",
+      claims: [
+        {
+          claim_id: "CLM-0901", patient_name: "Pauline Rowe", dob: "1953", dos: "2025-03-04",
+          provider_name: "Heartland Physical Therapy",
+          codes: ["97140", "97110", "97035"],
+          modifiers: ["GP", "GP", "GP"],
+          units: [3, 2, 1],
+          minutes: [45, 30, 8],
+          total_billed: 178.23, revenue_at_risk: 0,
+          issues: []
+        },
+        {
+          claim_id: "CLM-0902", patient_name: "Vernon Cassidy", dob: "1946", dos: "2025-03-04",
+          provider_name: "Heartland Physical Therapy",
+          codes: ["97110", "97530", "97140"],
+          modifiers: ["GP", "GP", "GP"],
+          units: [2, 2, 2],
+          minutes: [30, 30, 30],
+          total_billed: 189.68, revenue_at_risk: 63.40,
+          issues: [{
+            type: "NCCI_PTP", severity: "error",
+            codes: ["97110", "97530"],
+            description: "97110 and 97530 PTP edit — chronic pain patients often have both coded routinely. Modifier 59 and distinct documentation required.",
+            revenue_at_risk: 63.40
+          }]
+        },
+        {
+          claim_id: "CLM-0903", patient_name: "Agnes Whitt", dob: "1948", dos: "2025-03-04",
+          provider_name: "Heartland Physical Therapy",
+          codes: ["97140", "97035", "97014"],
+          modifiers: ["GP", "", ""],
+          units: [4, 1, 1],
+          minutes: [55, 8, null],
+          total_billed: 165.38, revenue_at_risk: 0,
+          issues: [{
+            type: "8_MINUTE_RULE", severity: "warning",
+            codes: ["97140"],
+            description: "97140 at 4 units — 55 min is valid but in the lower threshold. Ensure documentation is specific and defensible for audit.",
+            revenue_at_risk: 0
+          }]
+        }
+      ],
+      total_risk: 63.40
+    }
+  ];
+
+  /* ─── Demo state ─── */
+  let demoState = {
+    isRunning: false,
+    hasResults: false,
+    lastSetIndex: -1,
+    currentSet: null
+  };
+
+  /* ─── Helpers ─── */
+  function pickRandomSet() {
+    let idx;
+    do { idx = Math.floor(Math.random() * CLAIM_SETS.length); }
+    while (idx === demoState.lastSetIndex && CLAIM_SETS.length > 1);
+    demoState.lastSetIndex = idx;
+    return CLAIM_SETS[idx];
+  }
+
+  function claimStatusClass(claim) {
+    if (claim.issues.length === 0) return 'clean';
+    const hasError = claim.issues.some(i => i.severity === 'error');
+    return hasError ? 'error' : 'warning';
+  }
+
+  function violationTypeLabel(type) {
+    const map = {
+      'NCCI_PTP': 'NCCI PTP Edit',
+      '8_MINUTE_RULE': '8-Minute Rule',
+      'MODIFIER_GAP': 'Modifier Gap',
+      'MUE_VIOLATION': 'MUE Violation'
+    };
+    return map[type] || type;
+  }
+
+  /* ─── Build claim card HTML (pre-audit state) ─── */
+  function buildClaimCard(claim, index) {
+    const codeChips = claim.codes.map(c => `<span class="code-chip" data-code="${c}">${c}</span>`).join('');
+    const modStr = claim.modifiers.filter(Boolean).join(', ') || '—';
+    const unitsStr = claim.units.join(' / ');
+
+    return `
+      <div class="claim-card" id="card-${claim.claim_id}" style="transition-delay: ${index * 0.12}s">
+        <div class="claim-card-header">
+          <div>
+            <div class="claim-patient">${claim.patient_name}</div>
+            <div class="claim-id">${claim.claim_id} · DOS ${claim.dos}</div>
+          </div>
+          <div class="claim-status-dot" id="dot-${claim.claim_id}"></div>
+        </div>
+        <div class="claim-codes">${codeChips}</div>
+        <div class="claim-meta">
+          <span>${claim.provider_name}</span><br>
+          Modifiers: <span>${modStr}</span> · Units: <span>${unitsStr}</span>
+        </div>
+        <div class="violation-badge" id="badge-${claim.claim_id}"></div>
+      </div>
+    `;
+  }
+
+  /* ─── Main demo runner ─── */
+  async function runDemo() {
+    if (demoState.isRunning) return;
+
+    demoState.isRunning = true;
+    demoState.hasResults = false;
+
+    const btn = document.getElementById('btnGenerate');
+    btn.classList.add('spinning');
+    btn.disabled = true;
+
+    // Hide previous results
+    const resultsEl = document.getElementById('demoResults');
+    resultsEl.classList.remove('visible');
+    resultsEl.style.display = 'none';
+    document.getElementById('demoAuditBar').classList.remove('active');
+
+    const set = pickRandomSet();
+    demoState.currentSet = set;
+
+    // Show scenario label
+    const scenLabel = document.getElementById('demoScenarioLabel');
+    scenLabel.textContent = `Scenario: ${set.scenario}`;
+    scenLabel.classList.remove('visible');
+
+    // Build and inject claim cards
+    const grid = document.getElementById('demoClaimsGrid');
+    grid.innerHTML = set.claims.map((c, i) => buildClaimCard(c, i)).join('');
+
+    // Short delay then load cards
+    await delay(200);
+    btn.classList.remove('spinning');
+    btn.disabled = false;
+
+    set.claims.forEach((c, i) => {
+      setTimeout(() => {
+        document.getElementById(`card-${c.claim_id}`)?.classList.add('loaded');
+      }, 100 + i * 130);
+    });
+
+    scenLabel.classList.add('visible');
+
+    // Wait for cards to finish loading
+    await delay(700);
+
+    // Start audit
+    await runAudit(set);
+
+    demoState.isRunning = false;
+  }
+
+  /* ─── Audit animation ─── */
+  async function runAudit(set) {
+    const auditBar = document.getElementById('demoAuditBar');
+    const fill = document.getElementById('auditProgressFill');
+    const steps = document.querySelectorAll('.audit-step');
+
+    auditBar.classList.add('active');
+    fill.style.width = '0%';
+
+    const stepDelays = [380, 350, 320, 300, 280];
+    let cumulativeProgress = 0;
+
+    for (let i = 0; i < steps.length; i++) {
+      steps[i].classList.add('active');
+      steps[i].querySelector('.audit-step-icon').textContent = '·';
+      await delay(stepDelays[i]);
+      steps[i].classList.remove('active');
+      steps[i].classList.add('done');
+      steps[i].querySelector('.audit-step-icon').textContent = '✓';
+      cumulativeProgress = Math.round(((i + 1) / steps.length) * 100);
+      fill.style.width = cumulativeProgress + '%';
+    }
+
+    await delay(300);
+    auditBar.classList.remove('active');
+
+    // Reset steps for next run
+    steps.forEach(s => {
+      s.classList.remove('active', 'done');
+      s.querySelector('.audit-step-icon').textContent = '·';
+    });
+
+    // Reveal results on cards
+    await revealClaimResults(set);
+    await delay(300);
+    await showResultsSummary(set);
+  }
+
+  /* ─── Reveal violations on each card ─── */
+  async function revealClaimResults(set) {
+    for (let i = 0; i < set.claims.length; i++) {
+      const claim = set.claims[i];
+      const status = claimStatusClass(claim);
+      const card = document.getElementById(`card-${claim.claim_id}`);
+      const dot = document.getElementById(`dot-${claim.claim_id}`);
+      const badge = document.getElementById(`badge-${claim.claim_id}`);
+
+      if (!card) continue;
+
+      // Flag CPT chips
+      claim.issues.forEach(issue => {
+        issue.codes.forEach(code => {
+          const chip = card.querySelector(`[data-code="${code}"]`);
+          if (chip) chip.classList.add('flagged');
+        });
+      });
+
+      // Update card border & dot
+      card.classList.add(`audited-${status}`);
+      dot.classList.add(status);
+
+      // Build badge content
+      if (claim.issues.length === 0) {
+        badge.className = 'violation-badge clean-badge';
+        badge.innerHTML = `<div class="badge-type">Compliant</div>No issues found — claim is billable as coded.`;
+      } else {
+        const primaryIssue = claim.issues.find(i => i.severity === 'error') || claim.issues[0];
+        const badgeClass = primaryIssue.severity === 'error' ? 'error-badge' : 'warning-badge';
+        const riskStr = claim.revenue_at_risk > 0
+          ? `<div class="risk-amount">$${claim.revenue_at_risk.toFixed(2)} at risk</div>`
+          : '';
+        badge.className = `violation-badge ${badgeClass}`;
+        badge.innerHTML = `
+          <div class="badge-type">${violationTypeLabel(primaryIssue.type)}</div>
+          ${primaryIssue.description}
+          ${riskStr}
+        `;
+      }
+
+      // Stagger reveal
+      await delay(180);
+      badge.classList.add('visible');
+    }
+  }
+
+  /* ─── Show summary panel ─── */
+  async function showResultsSummary(set) {
+    const errors = set.claims.filter(c => c.issues.some(i => i.severity === 'error')).length;
+    const warnings = set.claims.filter(c => c.issues.length > 0 && !c.issues.some(i => i.severity === 'error')).length;
+    const totalRisk = set.claims.reduce((sum, c) => sum + c.revenue_at_risk, 0);
+
+    document.getElementById('resTotal').textContent = set.claims.length;
+    document.getElementById('resErrors').textContent = errors;
+    document.getElementById('resWarnings').textContent = warnings;
+
+    const resultsEl = document.getElementById('demoResults');
+    resultsEl.style.display = 'block';
+
+    // Animate revenue counter
+    animateCounter(document.getElementById('resRisk'), 0, totalRisk, 800);
+
+    await delay(50);
+    resultsEl.classList.add('visible');
+
+    demoState.hasResults = true;
+  }
+
+  /* ─── Revenue counter animation ─── */
+  function animateCounter(el, from, to, duration) {
+    const start = performance.now();
+    function frame(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      const value = from + (to - from) * ease;
+      el.textContent = '$' + value.toFixed(2);
+      if (progress < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  /* ─── Download audit report as CSV ─── */
+  function downloadReport() {
+    if (!demoState.currentSet) return;
+
+    const set = demoState.currentSet;
+    const timestamp = new Date().toISOString().slice(0,10);
+
+    let rows = [
+      ['neoPT Compliance Audit Report'],
+      [`Generated: ${timestamp}`],
+      [`Scenario: ${set.scenario}`],
+      [],
+      ['Claim ID', 'Patient', 'DOS', 'Provider', 'CPT Codes', 'Modifiers', 'Units', 'Total Billed', 'Status', 'Violation Type', 'Finding', 'Revenue At Risk'],
+    ];
+
+    set.claims.forEach(c => {
+      const status = claimStatusClass(c);
+      if (c.issues.length === 0) {
+        rows.push([
+          c.claim_id, c.patient_name, c.dos, c.provider_name,
+          c.codes.join(' | '), c.modifiers.filter(Boolean).join(' '), c.units.join(' / '),
+          `$${c.total_billed.toFixed(2)}`,
+          'COMPLIANT', '', 'No issues found — claim is billable as coded.', '$0.00'
+        ]);
+      } else {
+        c.issues.forEach((issue, idx) => {
+          rows.push([
+            idx === 0 ? c.claim_id : '',
+            idx === 0 ? c.patient_name : '',
+            idx === 0 ? c.dos : '',
+            idx === 0 ? c.provider_name : '',
+            idx === 0 ? c.codes.join(' | ') : '',
+            idx === 0 ? c.modifiers.filter(Boolean).join(' ') : '',
+            idx === 0 ? c.units.join(' / ') : '',
+            idx === 0 ? `$${c.total_billed.toFixed(2)}` : '',
+            issue.severity.toUpperCase(),
+            violationTypeLabel(issue.type),
+            issue.description,
+            issue.revenue_at_risk > 0 ? `$${issue.revenue_at_risk.toFixed(2)}` : '$0.00'
+          ]);
+        });
+      }
+    });
+
+    // Summary rows
+    const totalRisk = set.claims.reduce((s, c) => s + c.revenue_at_risk, 0);
+    const errors = set.claims.filter(c => c.issues.some(i => i.severity === 'error')).length;
+    rows.push(
+      [],
+      ['--- SUMMARY ---'],
+      ['Total Claims', set.claims.length],
+      ['Claims With Errors', errors],
+      ['Total Revenue At Risk', `$${totalRisk.toFixed(2)}`],
+      [],
+      ['Disclaimer: Not legal or compliance advice. All findings should be reviewed by a qualified billing professional.'],
+      ['neoPT Compliance Engine v0.5 | neopt.io | jperez@neopt.io']
+    );
+
+    const csvContent = rows.map(r => r.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(',')).join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `neoPT-audit-${set.set_id}-${timestamp}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  /* ─── Reset demo ─── */
+  function resetDemo() {
+    if (demoState.isRunning) return;
+
+    const grid = document.getElementById('demoClaimsGrid');
+    const resultsEl = document.getElementById('demoResults');
+    const scenLabel = document.getElementById('demoScenarioLabel');
+
+    resultsEl.classList.remove('visible');
+    setTimeout(() => { resultsEl.style.display = 'none'; }, 400);
+    scenLabel.classList.remove('visible');
+
+    // Fade out cards
+    document.querySelectorAll('.claim-card').forEach(c => {
+      c.style.opacity = '0';
+      c.style.transform = 'translateY(-10px)';
+    });
+
+    setTimeout(() => {
+      grid.innerHTML = '';
+      runDemo();
+    }, 350);
+  }
+
+  function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
 </script>
 
 </body>
